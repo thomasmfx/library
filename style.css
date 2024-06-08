@@ -36,6 +36,7 @@ input, button, textarea, select {
 :root {
     --dark-blue: #323377;
     --light-blue: #c7e1f3;
+    --book-bgcolor: #171614;
 }
 
 /* ------------------------------------ */
@@ -49,15 +50,19 @@ body {
 
 header {
     display: flex;
-    column-gap: 15px;
     justify-content: flex-start;
     align-items: center;
 }
 
-h1 {
+header > a {
+    text-decoration: none;
+}
+
+header > a > h1 {
     margin-left: 15px;
     font-size: 3rem;
     color: var(--dark-blue);
+    margin-right: 15px;
 }
 
 main {
@@ -66,29 +71,56 @@ main {
     justify-items: start;
 }
 
+/* main > layout (right-side) */
+
 #layout {
     display: grid;
     align-items: center;
     justify-items: center;
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
-    grid-template-rows: repeat(3, minmax(285px, 1fr));
+    grid-template-columns: repeat(4, 250px);
+    grid-template-rows: repeat(3, 290px);
 }
 
 .book-placeholder {
     display: grid;
-    grid-template-columns: 1em 1fr;
-    grid-template-rows: 25px 4em 1fr;
     background-color: #d1d1d13d;
     border-radius: 10px;
     width: 75%;
     height: 80%;
 }
 
-.book-placeholder:nth-child(1) {
-    background-color: #171614;
+
+.book {
+    position: relative;
+    bottom: 2.5px;
+    display: grid;
+    grid-template-columns: 1em 1fr;
+    grid-template-rows: 25px 4em 1fr;
+    background-color: var(--book-bgcolor);
+    border-radius: 10px;
+    box-shadow: 1px 1px 0px #F5F5DC,
+                2px 2px 0px #F5F5DC,
+                3px 3px 0px #F5F5DC,
+                4px 4px 0px #000000,
+                5px 5px 0px #000000,
+                6px 6px 0px #000000;
+
+    transition: .15s ease-in-out;
+
+    .book-icons {
+        visibility: hidden;
+    };
 }
 
-.book-placeholder:nth-child(2) {
+.book:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+    .book-icons {
+        visibility: visible;
+    }
+}
+
+/* .book-placeholder:nth-child(2) {
     .book-side-stripe {
         background-color: #323377;
     }
@@ -100,7 +132,7 @@ main {
         background-color: #143642;
     }
     background-color: #171614;
-}
+} */
 
 .book-side-stripe {
     border-top-left-radius: 10px;
@@ -109,20 +141,33 @@ main {
     background-color: #6f1d1b;
 }
 
-.book-placeholder > p {
+.book > p {
+    margin-left: 5px;
+    margin-right: 5px;
+    grid-column: 2 / -1;
+    grid-row: 2 / 3;
     align-self: center;
-    background-color: rgba(128, 128, 128, 0.35);
     color: white;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.book-title-bg {
+    grid-column: 2 / -1;
+    grid-row: 2 / 3;
+    background-color: #252322;
 }
 
 .book-icons {
+    grid-row: 3 / -1;
     align-self: end;
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
 }
+
+
+/* main > left-side */
 
 #left-side {
     align-self: end;
