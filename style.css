@@ -1,0 +1,105 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color-scheme: dark light;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, svg, video, canvas {
+    display: block;
+    max-width: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+:root {
+    --dark-blue: #323377;
+    --light-blue: #c7e1f3;
+}
+
+/* ------------------------------------ */
+
+body {
+    background: url(assets/images/background.svg);
+    background-repeat: no-repeat;
+    height: 100dvh;
+    font-family: 'Montserrat';
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+h1 {
+    margin-left: 15px;
+    font-size: 3rem;
+    color: var(--dark-blue);
+}
+
+main {
+    display: grid;
+    grid-template-columns: minmax(250px, 2.5fr) 8fr;
+    justify-items: start;
+}
+
+#layout {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-template-rows: repeat(3, minmax(285px, 1fr));
+}
+
+.book-placeholder {
+    background-color: rgb(220, 220, 220);
+    border-radius: 10px;
+    opacity: 30%;
+    min-width: 75%;
+    min-height: 80%;
+}
+
+#left-side {
+    align-self: end;
+    justify-self: center;
+}
+
+button#new-book {
+    border: none;
+    border-radius: 15px;
+    background-color: var(--dark-blue);
+    padding: 1em 2em;
+    margin-bottom: 25px;
+    color: white;
+    transition: .2s ease-in-out;
+}
+
+button#new-book:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+}
+    
+button#new-book:active {
+    filter: brightness(70%);
+}
