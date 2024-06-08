@@ -49,7 +49,9 @@ body {
 
 header {
     display: flex;
+    column-gap: 15px;
     justify-content: flex-start;
+    align-items: center;
 }
 
 h1 {
@@ -73,11 +75,53 @@ main {
 }
 
 .book-placeholder {
-    background-color: rgb(220, 220, 220);
+    display: grid;
+    grid-template-columns: 1em 1fr;
+    grid-template-rows: 25px 4em 1fr;
+    background-color: #d1d1d13d;
     border-radius: 10px;
-    opacity: 30%;
-    min-width: 75%;
-    min-height: 80%;
+    width: 75%;
+    height: 80%;
+}
+
+.book-placeholder:nth-child(1) {
+    background-color: #171614;
+}
+
+.book-placeholder:nth-child(2) {
+    .book-side-stripe {
+        background-color: #323377;
+    }
+    background-color: #171614;
+}
+
+.book-placeholder:nth-child(3) {
+    .book-side-stripe {
+        background-color: #143642;
+    }
+    background-color: #171614;
+}
+
+.book-side-stripe {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    grid-row: 1 / -1;
+    background-color: #6f1d1b;
+}
+
+.book-placeholder > p {
+    align-self: center;
+    background-color: rgba(128, 128, 128, 0.35);
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.book-icons {
+    align-self: end;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 #left-side {
