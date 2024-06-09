@@ -19,14 +19,51 @@
     </header>
     <main>
         <div id="left-side">
+            <form action="">
+                <h1>Book info</h1>
+                <div class="form-row">
+                    <label for="book-name">Name</label>
+                    <input type="text" id="book-name" maxlength="30">
+                </div>
+                <div class="form-row">
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author">
+                </div>
+                <div class="form-row">
+                    <label for="book-pages">Number of pages</label>
+                    <input type="number" id="book-pages">
+                </div>
+                <div class="form-row">
+                    <div id="reading-status">
+                        <span>
+                            <input type="radio" name="read-status"> Read
+                        </span> 
+                        <span>
+                            <input type="radio" name="read-status"> Not read
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row" id="buttons">
+                    <button type="reset" id="cancel-book-submit">
+                        <img src="assets/images/cancel.svg" alt="">
+                    </button>
+                    <button type="submit" id="submit-book">
+                        <img src="assets/images/confirm.svg" alt="">
+                    </button>
+                </div>
+            </form>
             <button id="new-book"><span>Add book</span></button>
         </div>
         <div id="layout">
             <div class="book-placeholder">
-                <div class="book">
+                <div class="book" id="particles-js">
                     <div class="book-side-stripe"></div>
                     <div class="book-title-bg"></div>
-                    <p>Entendendo Algoritmos</p>
+                    <p>Da Vinci Code</p>
+                    <div class="book-info">
+                        <p>by: James Brown</p>
+                        <p>p: 621</p>
+                    </div>
                     <div class="book-icons">
                         <img src="assets/images/read_checked.svg" alt="Book read checkmark">
                         <img src="assets/images/remove.svg" alt="Remove book">
@@ -34,13 +71,19 @@
                 </div>
             </div>
             <div class="book-placeholder">
-                <!-- <div class="book-side-stripe"></div>
-                <div class="book-title-bg"></div>
-                <p>Turma da mônica</p>
-                <div class="book-icons">
-                    <img src="assets/images/read_checked.svg" alt="Book read checkmark">
-                    <img src="assets/images/remove.svg" alt="Remove book">
-                </div> -->
+                <div class="book">
+                    <div class="book-side-stripe"></div>
+                    <div class="book-title-bg"></div>
+                    <p>Turma da mônica</p>
+                    <div class="book-info">
+                        <p>by: Monteiro lobato</p>
+                        <p>p: 73.154</p>
+                    </div>
+                    <div class="book-icons">
+                        <img src="assets/images/read_checked.svg" alt="Book read checkmark">
+                        <img src="assets/images/remove.svg" alt="Remove book">
+                    </div>
+                </div>
             </div>
             <div class="book-placeholder">
                 <!-- <div class="book-side-stripe"></div>
@@ -62,5 +105,6 @@
             <div class="book-placeholder"></div>
         </div>
     </main>
+    <!-- <script src="assets/particles/particles.js"></script> -->
 </body>
 </html>

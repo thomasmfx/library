@@ -73,6 +73,29 @@ main {
 
 /* main > layout (right-side) */
 
+
+.background {
+  
+    position
+    :
+     absolute
+    ;
+      
+    display
+    :
+     block
+    ;
+      
+    top
+    : 0;
+      
+    left
+    : 0;
+      
+    z-index
+    : 0;
+}
+
 #layout {
     display: grid;
     align-items: center;
@@ -92,10 +115,10 @@ main {
 
 .book {
     position: relative;
-    bottom: 2.5px;
+    bottom: 3px;
     display: grid;
     grid-template-columns: 1em 1fr;
-    grid-template-rows: 25px 4em 1fr;
+    grid-template-rows: 25px 4em min-content 1fr;
     background-color: var(--book-bgcolor);
     border-radius: 10px;
     box-shadow: 1px 1px 0px #F5F5DC,
@@ -106,6 +129,7 @@ main {
                 6px 6px 0px #000000;
 
     transition: .15s ease-in-out;
+    word-wrap: break-word;
 
     .book-icons {
         visibility: hidden;
@@ -118,16 +142,18 @@ main {
     .book-icons {
         visibility: visible;
     }
-}
-
-/* .book-placeholder:nth-child(2) {
-    .book-side-stripe {
-        background-color: #323377;
+    .book-info {
+        visibility: visible;
     }
-    background-color: #171614;
 }
 
-.book-placeholder:nth-child(3) {
+.book-placeholder:nth-child(2) {
+    .book > .book-side-stripe {
+        background-color: #143642;
+    }
+}
+
+/* .book-placeholder:nth-child(3) {
     .book-side-stripe {
         background-color: #143642;
     }
@@ -141,6 +167,12 @@ main {
     background-color: #6f1d1b;
 }
 
+.book-title-bg {
+    grid-column: 2 / -1;
+    grid-row: 2 / 3;
+    background-color: #252322;
+}
+
 .book > p {
     margin-left: 5px;
     margin-right: 5px;
@@ -149,29 +181,49 @@ main {
     align-self: center;
     color: white;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
-.book-title-bg {
-    grid-column: 2 / -1;
-    grid-row: 2 / 3;
-    background-color: #252322;
+.book-info {
+    margin-top: 10px;
+    align-self: start;
+    text-align: center;
+    grid-row: 3 / -2;
+    color: lightgray;
+
+    visibility: hidden;
+    transition: .2s ease-in-out;
+    font-size: 0.8rem;
 }
 
 .book-icons {
-    grid-row: 3 / -1;
+    grid-row: 4 / -1;
     align-self: end;
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
 }
 
+.book-icons > img {
+    transition: .2s ease-in-out;
+}
+
+.book-icons > img:hover {
+    transform: translateY(10%);
+}
+
 
 /* main > left-side */
 
 #left-side {
-    align-self: end;
-    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr min-content;
+
+    width: 100%;
+    justify-items: center;
+    align-items: end;
+    row-gap: 5em;
 }
 
 button#new-book {
@@ -179,16 +231,77 @@ button#new-book {
     border-radius: 15px;
     background-color: var(--dark-blue);
     padding: 1em 2em;
-    margin-bottom: 25px;
+    margin-bottom: 2em;
     color: white;
-    transition: .2s ease-in-out;
+    transition: .1s ease-in-out;
 }
 
 button#new-book:hover {
     cursor: pointer;
-    transform: scale(0.95);
+    filter: brightness(90%);
 }
     
 button#new-book:active {
-    filter: brightness(70%);
+    transform: scale(0.95);
+}
+
+form {
+    display: grid;
+    row-gap: 1em;
+    padding: 2em;
+    border-radius: 10px;
+    background-color: var(--book-bgcolor);
+    color: white;
+
+    /* visibility: hidden;
+    opacity: 0; */
+}
+
+form > h1 {
+    text-align: center;
+}
+
+.form-row > input,
+.form-row > button {
+    border-radius: 5px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-book {
+    border: none;
+    background-color: #588157;
+    cursor: pointer;
+}
+
+#cancel-book-submit {
+    border: none;
+    background-color: #bc4b51;
+    cursor: pointer;
+
+}
+
+#reading-status {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-row#buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    column-gap: 1em;
+}
+
+.form-row > button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.form-row > button:hover {
+    opacity: 80%;
 }
