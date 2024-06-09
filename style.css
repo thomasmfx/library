@@ -73,29 +73,6 @@ main {
 
 /* main > layout (right-side) */
 
-
-.background {
-  
-    position
-    :
-     absolute
-    ;
-      
-    display
-    :
-     block
-    ;
-      
-    top
-    : 0;
-      
-    left
-    : 0;
-      
-    z-index
-    : 0;
-}
-
 #layout {
     display: grid;
     align-items: center;
@@ -116,11 +93,13 @@ main {
 .book {
     position: relative;
     bottom: 3px;
+
     display: grid;
     grid-template-columns: 1em 1fr;
     grid-template-rows: 25px 4em min-content 1fr;
-    background-color: var(--book-bgcolor);
+    
     border-radius: 10px;
+    background-color: var(--book-bgcolor);
     box-shadow: 1px 1px 0px #F5F5DC,
                 2px 2px 0px #F5F5DC,
                 3px 3px 0px #F5F5DC,
@@ -245,7 +224,7 @@ button#new-book:active {
     transform: scale(0.95);
 }
 
-form {
+#book-form {
     display: grid;
     row-gap: 1em;
     padding: 2em;
@@ -253,8 +232,8 @@ form {
     background-color: var(--book-bgcolor);
     color: white;
 
-    /* visibility: hidden;
-    opacity: 0; */
+    visibility: hidden;
+    /* opacity: 0; */
 }
 
 form > h1 {
