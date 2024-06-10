@@ -66,6 +66,8 @@ header > a > h1 {
 }
 
 main {
+    margin-left: 15px;
+    margin-right: 15px;
     display: grid;
     grid-template-columns: minmax(250px, 2.5fr) 8fr;
     justify-items: start;
@@ -232,7 +234,7 @@ button#new-book:active {
     background-color: var(--book-bgcolor);
     color: white;
 
-    visibility: hidden;
+    /* visibility: hidden; */
     /* opacity: 0; */
 }
 
@@ -265,8 +267,9 @@ form > h1 {
 
 #reading-status {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
+
 
 .form-row#buttons {
     display: flex;
