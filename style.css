@@ -37,6 +37,10 @@ input, button, textarea, select {
     --dark-blue: #323377;
     --light-blue: #c7e1f3;
     --book-bgcolor: #171614;
+    --red-strip: #6f1d1b;
+    --blue-strip: #143642;
+    --green-strip: #adc178;
+    --purple-strip: #3d314a;
 }
 
 /* ------------------------------------ */
@@ -155,6 +159,7 @@ main {
 }
 
 .book > p {
+    max-width: 15ch;
     margin-left: 5px;
     margin-right: 5px;
     grid-column: 2 / -1;
@@ -286,4 +291,12 @@ form > h1 {
 
 .form-row > button:hover {
     opacity: 80%;
+}
+
+#book-name:not(#book-name:placeholder-shown) {
+    border-color: green;
+}
+
+#book-name:invalid {
+    border-color: red;
 }

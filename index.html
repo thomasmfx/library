@@ -21,9 +21,9 @@
         <div id="left-side" >
             <form action="" id="book-form">
                 <h1>Book info</h1>
-                <div class="form-row" >
+                <div class="form-row"> 
                     <label for="book-name">Name</label>
-                    <input type="text" id="book-name" name="book-name" maxlength="30" required>
+                    <input type="text" id="book-name" name="book-name" maxlength="30" placeholder="">
                 </div>
                 <div class="form-row">
                     <label for="book-author">Author</label>
@@ -36,10 +36,10 @@
                 <div class="form-row">
                     <div id="reading-status">
                         <span>
-                            <input type="radio" name="read-status" class="radio" id="radio-read"> Read
+                            <input type="radio" name="read-status" class="radio" id="read"> Read
                         </span>
                         <span>
-                            <input type="radio" name="read-status" class="radio"  id="radio-not-read"> Not read
+                            <input type="radio" name="read-status" class="radio"  id="not-read"> Not read
                         </span>
                     </div >
                 </div>
@@ -55,36 +55,9 @@
             <button id="new-book"><span>New book</span></button>
         </div>
         <div id="layout">
-            <div class="book-placeholder" data-index="1">
-                <div class="book">
-                    <div class="book-side-stripe"></div>
-                    <div class="book-title-bg"></div>
-                    <p>Da Vinci Code</p>
-                    <div class="book-info">
-                        <p>by: James Brown</p>
-                        <p>620 pp.</p>
-                    </div>
-                    <div class="book-icons">
-                        <img src="assets/images/read_checked.svg" alt="Book read checkmark" class="book-read-icon">
-                        <img src="assets/images/remove.svg" alt="Remove book" class="remove-book-icon">
-                    </div>
-                </div>
-            </div>
-            <div class="book-placeholder" data-index="2">
-                <div class="book">
-                    <div class="book-side-stripe"></div>
-                    <div class="book-title-bg"></div>
-                    <p>Turma da mônica</p>
-                    <div class="book-info">
-                        <p>by: Monteiro lobato</p>
-                        <p>73.154 pp.</p>
-                    </div>
-                    <div class="book-icons">
-                        <img src="assets/images/read_not_checked.svg" alt="Book read checkmark" class="book-read-icon">
-                        <img src="assets/images/remove.svg" alt="Remove book" class="remove-book-icon">
-                    </div>
-                </div>
-            </div>
+            <div class="book-placeholder" data-index="0"></div>
+            <div class="book-placeholder" data-index="1"></div>
+            <div class="book-placeholder" data-index="2"></div>
             <div class="book-placeholder" data-index="3"></div>
             <div class="book-placeholder" data-index="4"></div>
             <div class="book-placeholder" data-index="5"></div>
@@ -94,7 +67,6 @@
             <div class="book-placeholder" data-index="9"></div>
             <div class="book-placeholder" data-index="10"></div>
             <div class="book-placeholder" data-index="11"></div>
-            <div class="book-placeholder" data-index="12"></div>
         </div>
     </main>
     
