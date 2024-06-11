@@ -1,16 +1,19 @@
 const bookForm = document.querySelector("#book-form");
-const formRows = document.querySelectorAll(".form-row")
-const newBookBtn = document.querySelector("#new-book");
 const submitBookBtn = document.querySelector("#submit-book")
-const cancelBookSubmitBtn = document.querySelector("#cancel-book-submit");
 const booksPlaceholders = document.querySelectorAll(".book-placeholder");
-const books = document.querySelectorAll(".book");
-let bookName = document.querySelector("#book-name").value;
-let bookAuthor = document.querySelector("#book-author").value;
-let bookPages = document.querySelector("#book-pages").value;
-let bookReadStatus = null;
-let bookIndex = null;
+const library = [];
+class Book {
+    constructor(name, author, pages, readStatus, color) {
+        this.name = name,
+        this.author = author,
+        this.pages = pages,
+        this.readStatus = readStatus,
+        this.color = color;
+    }
+};
 
+
+const newBookBtn = document.querySelector("#new-book");
 newBookBtn.addEventListener("click", () => {
     if(bookForm.style.visibility === "visible") {
         bookForm.style.visibility = "hidden";
@@ -23,7 +26,7 @@ submitBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
     bookName = document.querySelector("#book-name").value;
     let input = document.querySelector("#book-name");
-    if(bookName !== '') {
+    if(bookName !== 'a') {
         addBookToLibrary()
         input.setCustomValidity("");
         bookForm.reset()
@@ -31,30 +34,33 @@ submitBookBtn.addEventListener("click", (event) => {
         input.setCustomValidity("Invalid field.");
     }
 });
-
+    
+const cancelBookSubmitBtn = document.querySelector("#cancel-book-submit");
 cancelBookSubmitBtn.addEventListener("click", () => {
     bookForm.style.visibility = "hidden";
 });
 
 function bookIconsBehavior() {
-    const bookReadIcons = document.querySelectorAll(".book-read-icon");
-    const removeBookIcons = document.querySelectorAll(".remove-book-icon");
-
+    let removeBookIcons = document.querySelectorAll(".remove-book-icon");
+    let bookReadIcons = document.querySelectorAll(".book-read-icon");
+    
     bookReadIcons.forEach(icon => {
-        if(bookReadStatus === false || bookReadStatus === null) {
-            icon.src = "/assets/images/read_not_checked.svg";
+        let parentPlaceholder = icon.parentElement.parentElement.parentElement.dataset.index;
+
+        if(library[parentPlaceholder].readStatus == false) {
+            icon.src = "/assets/images/read_not_checked.svg"
             icon.title = "Not read"
         } else {
-            icon.src = "/assets/images/read_checked.svg";
+            icon.src = "/assets/images/read_checked.svg"
             icon.title = "Read"
         }
 
         icon.onclick = () => {
             if(icon.src.slice(-16) == "read_checked.svg") {
-                icon.src = "/assets/images/read_not_checked.svg";
+                icon.src = "/assets/images/read_not_checked.svg"
                 icon.title = "Not read"
             } else {
-                icon.src = "/assets/images/read_checked.svg";
+                icon.src = "/assets/images/read_checked.svg"
                 icon.title = "Read"
             }
         }
@@ -62,89 +68,78 @@ function bookIconsBehavior() {
 
     removeBookIcons.forEach(icon => {
         icon.onclick = () => {
-            // icon < book-icons < Book
             let parentPlaceholder = icon.parentElement.parentElement.parentElement.dataset.index;
-            library.pop([parentPlaceholder])
+            library.splice(parentPlaceholder, 1)
             icon.parentElement.parentElement.remove()
+            organizeBooks()
         }
     });
 };
 
-const library = [];
-
-class Book {
-    constructor(name, author, pages, readStatus) {
-        this.name = name,
-            this.author = author,
-            this.pages = pages,
-            this.readStatus = readStatus;
-    }
-};
-
 function addBookToLibrary() {
-    bookName = document.querySelector("#book-name").value;
-    bookAuthor = document.querySelector("#book-author").value;
-    bookPages = document.querySelector("#book-pages").value;
-
+    let bookName = document.querySelector("#book-name").value;
+    let bookAuthor = document.querySelector("#book-author").value;
+    let bookPages = document.querySelector("#book-pages").value;
+    let bookReadStatus = false;
+    
     if(document.querySelector("#read").checked) {
         bookReadStatus = true
-    } else {
-        bookReadStatus = false
-    };
+    }
     
-    let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus)
+    let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus, randomColor())
     library.push(book);
 
     for(let i = 0; i < library.length; i++) {
         if(library[i] === book) {
-            bookIndex = i;
+            addBookToPlaceholder(i)
+            bookIconsBehavior()
         }
     };
-
-    addBookToPlaceholder(bookIndex)
-    bookIconsBehavior()
 };
 
 function addBookToPlaceholder(position) {
     booksPlaceholders.forEach(placeholder => {
         if(placeholder.dataset.index == position) {
-            const createBook = document.createElement("div")
-            createBook.classList.add('book');
-            const createBookSideStripe = document.createElement("div")
-            createBookSideStripe.classList.add('book-side-stripe');
-            const createBookNameBg = document.createElement("div")
-            createBookNameBg.classList.add('book-title-bg');
-            const createBookName = document.createElement("p");
-            createBookName.textContent = library[position].name;
-            const createBookInfo = document.createElement("div")
-            createBookInfo.classList.add('book-info');
-            const createBookAuthor = document.createElement("p");
-            createBookAuthor.textContent = `by: ${library[position].author}`;
-            const createBookPages = document.createElement("p");
-            createBookPages.textContent = `${library[position].pages} pp.`;
-            const createBookIcons = document.createElement("div")
-            createBookIcons.classList.add('book-icons');
-            const createReadIcon = document.createElement("img")
-            createReadIcon.classList.add('book-read-icon');
-            createReadIcon.src = 'assets/images/read_checked.svg'
-            const createRemoveIcon = document.createElement("img")
-            createRemoveIcon.classList.add('remove-book-icon')
-            createRemoveIcon.src = 'assets/images/remove.svg'
+            if(!placeholder.hasChildNodes()) {
+                const createBook = document.createElement("div")
+                createBook.classList.add('book');
+                const createBookSideStripe = document.createElement("div")
+                createBookSideStripe.classList.add('book-side-stripe');
+                const createBookNameBg = document.createElement("div")
+                createBookNameBg.classList.add('book-title-bg');
+                const createBookName = document.createElement("p");
+                createBookName.textContent = library[position].name;
+                const createBookInfo = document.createElement("div")
+                createBookInfo.classList.add('book-info');
+                const createBookAuthor = document.createElement("p");
+                createBookAuthor.textContent = `by: ${library[position].author}`;
+                const createBookPages = document.createElement("p");
+                createBookPages.textContent = `${library[position].pages} pp.`;
+                const createBookIcons = document.createElement("div")
+                createBookIcons.classList.add('book-icons');
+                const createReadIcon = document.createElement("img")
+                createReadIcon.classList.add('book-read-icon');
+                createReadIcon.src = 'assets/images/read_not_checked.svg'
+                const createRemoveIcon = document.createElement("img")
+                createRemoveIcon.classList.add('remove-book-icon')
+                createRemoveIcon.src = 'assets/images/remove.svg'
 
-            createBookIcons.appendChild(createReadIcon);
-            createBookIcons.appendChild(createRemoveIcon);
+                createBookIcons.appendChild(createReadIcon);
+                createBookIcons.appendChild(createRemoveIcon);
 
-            createBookInfo.appendChild(createBookAuthor);
-            createBookInfo.appendChild(createBookPages);
-            
-            createBookSideStripe.style.backgroundColor = randomColor();
-            createBook.appendChild(createBookSideStripe);
-            createBook.appendChild(createBookNameBg);
-            createBook.appendChild(createBookName)
-            createBook.appendChild(createBookInfo);
-            createBook.appendChild(createBookIcons);
+                createBookInfo.appendChild(createBookAuthor);
+                createBookInfo.appendChild(createBookPages);
+                
 
-            placeholder.appendChild(createBook)
+                createBookSideStripe.style.backgroundColor = library[position].color;
+                createBook.appendChild(createBookSideStripe);
+                createBook.appendChild(createBookNameBg);
+                createBook.appendChild(createBookName)
+                createBook.appendChild(createBookInfo);
+                createBook.appendChild(createBookIcons);
+
+                placeholder.appendChild(createBook)
+            }
         }
     })
 };
@@ -155,3 +150,17 @@ function randomColor() {
 
     return color
 }
+
+function organizeBooks() {
+    booksPlaceholders.forEach(placeholder => {
+        if(placeholder.hasChildNodes()) {
+            placeholder.firstChild.remove()
+        }
+        if(!placeholder.hasChildNodes()) {
+            for(let i = 0; i < library.length; i++) {
+                addBookToPlaceholder(i)
+                bookIconsBehavior()
+            }
+        }
+    })
+};
