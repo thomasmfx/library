@@ -95,7 +95,6 @@ main {
     height: 80%;
 }
 
-
 .book {
     position: relative;
     bottom: 3px;
@@ -131,19 +130,6 @@ main {
         visibility: visible;
     }
 }
-
-.book-placeholder:nth-child(2) {
-    .book > .book-side-stripe {
-        background-color: #143642;
-    }
-}
-
-/* .book-placeholder:nth-child(3) {
-    .book-side-stripe {
-        background-color: #143642;
-    }
-    background-color: #171614;
-} */
 
 .book-side-stripe {
     border-top-left-radius: 10px;
@@ -197,7 +183,6 @@ main {
     transform: translateY(10%);
 }
 
-
 /* main > left-side */
 
 #left-side {
@@ -238,7 +223,7 @@ button#new-book:active {
     background-color: var(--book-bgcolor);
     color: white;
 
-    /* visibility: hidden; */
+    visibility: hidden;
     /* opacity: 0; */
 }
 
@@ -273,7 +258,6 @@ form > h1 {
     display: flex;
     justify-content: space-evenly;
 }
-
 
 .form-row#buttons {
     display: flex;

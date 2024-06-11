@@ -1,5 +1,7 @@
 const bookForm = document.querySelector("#book-form");
+const newBookBtn = document.querySelector("#new-book");
 const submitBookBtn = document.querySelector("#submit-book")
+const cancelBookSubmitBtn = document.querySelector("#cancel-book-submit");
 const booksPlaceholders = document.querySelectorAll(".book-placeholder");
 const library = [];
 class Book {
@@ -12,8 +14,6 @@ class Book {
     }
 };
 
-
-const newBookBtn = document.querySelector("#new-book");
 newBookBtn.addEventListener("click", () => {
     if(bookForm.style.visibility === "visible") {
         bookForm.style.visibility = "hidden";
@@ -24,9 +24,10 @@ newBookBtn.addEventListener("click", () => {
 
 submitBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    bookName = document.querySelector("#book-name").value;
+    let bookName = document.querySelector("#book-name").value;
     let input = document.querySelector("#book-name");
-    if(bookName !== 'a') {
+    
+    if(bookName !== '') {
         addBookToLibrary()
         input.setCustomValidity("");
         bookForm.reset()
@@ -35,15 +36,12 @@ submitBookBtn.addEventListener("click", (event) => {
     }
 });
     
-const cancelBookSubmitBtn = document.querySelector("#cancel-book-submit");
 cancelBookSubmitBtn.addEventListener("click", () => {
     bookForm.style.visibility = "hidden";
 });
 
-function bookIconsBehavior() {
-    let removeBookIcons = document.querySelectorAll(".remove-book-icon");
+function readStatusBehavior() {
     let bookReadIcons = document.querySelectorAll(".book-read-icon");
-    
     bookReadIcons.forEach(icon => {
         let parentPlaceholder = icon.parentElement.parentElement.parentElement.dataset.index;
 
@@ -65,7 +63,10 @@ function bookIconsBehavior() {
             }
         }
     });
+};
 
+function removeBooksBehavior() {
+    let removeBookIcons = document.querySelectorAll(".remove-book-icon");
     removeBookIcons.forEach(icon => {
         icon.onclick = () => {
             let parentPlaceholder = icon.parentElement.parentElement.parentElement.dataset.index;
@@ -91,8 +92,9 @@ function addBookToLibrary() {
 
     for(let i = 0; i < library.length; i++) {
         if(library[i] === book) {
-            addBookToPlaceholder(i)
-            bookIconsBehavior()
+            addBookToPlaceholder(i);
+            readStatusBehavior();
+            removeBooksBehavior();
         }
     };
 };
@@ -145,10 +147,9 @@ function addBookToPlaceholder(position) {
 };
 
 function randomColor() {
-    let colorOptions = ['var(--red-strip)', 'var(--blue-strip)', 'var(--green-strip)', 'var(--purple-strip)']
-    let color = colorOptions[(Math.floor(Math.random() * colorOptions.length))];
+    const colorOptions = ['var(--red-strip)', 'var(--blue-strip)', 'var(--green-strip)', 'var(--purple-strip)']
 
-    return color
+    return (colorOptions[(Math.floor(Math.random() * colorOptions.length))]);
 }
 
 function organizeBooks() {
@@ -159,7 +160,7 @@ function organizeBooks() {
         if(!placeholder.hasChildNodes()) {
             for(let i = 0; i < library.length; i++) {
                 addBookToPlaceholder(i)
-                bookIconsBehavior()
+                removeBooksBehavior()
             }
         }
     })
