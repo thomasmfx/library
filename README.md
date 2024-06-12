@@ -1,5 +1,5 @@
 # library
 
-Deploy: [Library](https://thomasmfx.github.io/library/)
+Deploy: [thomasmfx.github.io/library](https://thomasmfx.github.io/library/)
 
-![Preview image of the project]()
+![Preview image of the project](assets/images/project_preview.png)
