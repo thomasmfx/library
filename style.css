@@ -36,10 +36,10 @@ input, button, textarea, select {
 :root {
     --primary-color: #6e0d25;
     --light-blue: #c7e1f3;
-    --book-bgcolor: #171614;
+    --black: #171614;
     --red-strip: #6f1d1b;
     --blue-strip: #143642;
-    --green-strip: #adc178;
+    --green-strip: #333d29;
     --purple-strip: #3d314a;
 }
 
@@ -85,7 +85,7 @@ main {
     margin-right: 15px;
     column-gap: 1em;
     display: grid;
-    grid-template-columns: minmax(250px, 2.5fr) 8fr;
+    grid-template-columns: 1fr 3fr;
     justify-items: start;
 }
 
@@ -101,7 +101,7 @@ main {
 
 .book-placeholder {
     display: grid;
-    background-color: #f4f2f2;
+    background-color: #dbd8d8b7;
     border-radius: 10px;
     width: 75%;
     height: 80%;
@@ -116,7 +116,7 @@ main {
     grid-template-rows: 25px 4em min-content 1fr;
     
     border-radius: 10px;
-    background-color: var(--book-bgcolor);
+    background-color: var(--black);
     box-shadow: 1px 1px 0px #F5F5DC,
                 2px 2px 0px #F5F5DC,
                 3px 3px 0px #F5F5DC,
@@ -147,6 +147,7 @@ main {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     grid-row: 1 / -1;
+    background-color: var(--green-strip);
 }
 
 .book-title-bg {
@@ -215,7 +216,7 @@ button#new-book {
     padding: 1em 2em;
     margin-bottom: 2em;
     color: white;
-    transition: .1s ease-in-out;
+    transition: .1s ease;
 }
 
 button#new-book:hover {
@@ -232,7 +233,7 @@ button#new-book:active {
     row-gap: 1em;
     padding: 2em;
     border-radius: 10px;
-    background-color: var(--book-bgcolor);
+    background-color: var(--black);
     color: white;
 
     visibility: hidden;
@@ -241,6 +242,7 @@ button#new-book:active {
 
 form > h1 {
     text-align: center;
+    max-width: 10ch;
 }
 
 .form-row > input,

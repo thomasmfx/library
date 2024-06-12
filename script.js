@@ -1,6 +1,6 @@
 const bookForm = document.querySelector("#book-form");
 const newBookBtn = document.querySelector("#new-book");
-const submitBookBtn = document.querySelector("#submit-book")
+const submitBookBtn = document.querySelector("#submit-book");
 const cancelBookSubmitBtn = document.querySelector("#cancel-book-submit");
 const booksPlaceholders = document.querySelectorAll(".book-placeholder");
 const library = [];
@@ -166,6 +166,8 @@ function organizeBooks() {
     })
 };
 
+
+// Particles.js library
 particlesJS('particles-js', {
     "particles": {
         "number": {
