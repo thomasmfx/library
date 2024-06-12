@@ -80,25 +80,28 @@ function removeBooksBehavior() {
 };
 
 function addBookToLibrary() {
-    let bookName = document.querySelector("#book-name").value;
-    let bookAuthor = document.querySelector("#book-author").value;
-    let bookPages = document.querySelector("#book-pages").value;
-    let bookReadStatus = false;
-    
-    if(document.querySelector("#read").checked) {
-        bookReadStatus = true
-    }
-    
-    let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus, randomColor())
-    library.push(book);
+    if(library.length < 12) {
+        let bookName = document.querySelector("#book-name").value;
+        let bookAuthor = document.querySelector("#book-author").value;
+        let bookPages = document.querySelector("#book-pages").value;
+        let bookReadStatus = false;
+        
+        if(document.querySelector("#read").checked) {
+            bookReadStatus = true
+        };
+        
 
-    for(let i = 0; i < library.length; i++) {
-        if(library[i] === book) {
-            addBookToPlaceholder(i);
-            readStatusBehavior();
-            removeBooksBehavior();
-        }
-    };
+        let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus, randomColor())
+        library.push(book);
+
+        for(let i = 0; i < library.length; i++) {
+            if(library[i] === book) {
+                addBookToPlaceholder(i);
+                readStatusBehavior();
+                removeBooksBehavior();
+            }
+        };
+    }
 };
 
 function addBookToPlaceholder(position) {
