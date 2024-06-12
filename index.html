@@ -6,22 +6,24 @@
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/svg">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/svg">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+    <div id="particles-js"></div>
     <header>
         <a href="https://github.com/thomasmfx/library">
             <h1>Library</h1>
-            </a>
-            <a href="https://github.com/thomasmfx/library">
-                <img src="assets/images/logo.svg" alt="Logo of a person reading a book">
-                </a>
+        </a>
+        <a href="https://github.com/thomasmfx/library">
+            <img src="assets/images/logo.svg" alt="Logo of a person reading a book">
+        </a>
     </header>
     <main>
         <div id="left-side" >
             <form action="" id="book-form">
                 <h1>Book info</h1>
-                <div class="form-row"> 
+                <div class="form-row">
                     <label for="book-name">Name</label>
                     <input type="text" id="book-name" name="book-name" maxlength="30" placeholder="">
                 </div>
@@ -31,7 +33,7 @@
                 </div>
                 <div class="form-row">
                     <label for="book-pages">Number of pages</label>
-                    <input type="number" id="book-pages" name="book-pages">
+                    <input type="number" id="book-pages" name="book-pages" max="99999999999999999">
                 </div>
                 <div class="form-row">
                     <div id="reading-status">
@@ -69,8 +71,5 @@
             <div class="book-placeholder" data-index="11"></div>
         </div>
     </main>
-    
-    <!-- <script src="assets/particles/particles.min.js"></script>
-    <script src="assets/particles/app.js"></script> -->
 </body>
 </html>

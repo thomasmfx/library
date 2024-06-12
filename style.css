@@ -34,7 +34,7 @@ input, button, textarea, select {
 }
 
 :root {
-    --dark-blue: #323377;
+    --primary-color: #6e0d25;
     --light-blue: #c7e1f3;
     --book-bgcolor: #171614;
     --red-strip: #6f1d1b;
@@ -44,13 +44,24 @@ input, button, textarea, select {
 }
 
 /* ------------------------------------ */
-
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Garante que o contêiner de partículas esteja atrás dos outros elementos */
+}
 body {
-    background: url(assets/images/background.svg);
+    background-color: #FFFFFF;
     background-repeat: no-repeat;
     height: 100dvh;
     font-family: 'Montserrat';
 }
+
+header, main {
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo principal esteja à frente do contêiner de partículas */
+}
+
 
 header {
     display: flex;
@@ -65,13 +76,14 @@ header > a {
 header > a > h1 {
     margin-left: 15px;
     font-size: 3rem;
-    color: var(--dark-blue);
+    color: var(--primary-color);
     margin-right: 15px;
 }
 
 main {
     margin-left: 15px;
     margin-right: 15px;
+    column-gap: 1em;
     display: grid;
     grid-template-columns: minmax(250px, 2.5fr) 8fr;
     justify-items: start;
@@ -89,7 +101,7 @@ main {
 
 .book-placeholder {
     display: grid;
-    background-color: #d1d1d13d;
+    background-color: #f4f2f2;
     border-radius: 10px;
     width: 75%;
     height: 80%;
@@ -199,7 +211,7 @@ main {
 button#new-book {
     border: none;
     border-radius: 15px;
-    background-color: var(--dark-blue);
+    background-color: var(--primary-color);
     padding: 1em 2em;
     margin-bottom: 2em;
     color: white;
@@ -208,7 +220,7 @@ button#new-book {
 
 button#new-book:hover {
     cursor: pointer;
-    filter: brightness(90%);
+    filter: brightness(70%);
 }
     
 button#new-book:active {
