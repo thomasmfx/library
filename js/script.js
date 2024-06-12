@@ -54,7 +54,7 @@ function readStatusBehavior() {
         }
 
         icon.onclick = () => {
-            if(icon.src.slice(-16) == "read_checked.svg") {
+            if(icon.src.includes("read_checked.svg")) {
                 icon.src = "/assets/images/read_not_checked.svg"
                 icon.title = "Not read"
             } else {
