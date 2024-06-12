@@ -70,9 +70,11 @@ function removeBooksBehavior() {
     removeBookIcons.forEach(icon => {
         icon.onclick = () => {
             let parentPlaceholder = icon.parentElement.parentElement.parentElement.dataset.index;
-            library.splice(parentPlaceholder, 1)
-            icon.parentElement.parentElement.remove()
-            organizeBooks()
+            library.splice(parentPlaceholder, 1);
+            icon.parentElement.parentElement.remove();
+
+            organizeBooks();
+            readStatusBehavior();
         }
     });
 };
