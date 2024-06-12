@@ -46,19 +46,19 @@ function readStatusBehavior() {
         let parentPlaceholder = icon.parentElement.parentElement.parentElement.dataset.index;
 
         if(library[parentPlaceholder].readStatus == false) {
-            icon.src = "/assets/images/read_not_checked.svg"
+            icon.src = "assets/images/read_not_checked.svg"
             icon.title = "Not read"
         } else {
-            icon.src = "/assets/images/read_checked.svg"
+            icon.src = "assets/images/read_checked.svg"
             icon.title = "Read"
         }
 
         icon.onclick = () => {
             if(icon.src.includes("read_checked.svg")) {
-                icon.src = "/assets/images/read_not_checked.svg"
+                icon.src = "assets/images/read_not_checked.svg"
                 icon.title = "Not read"
             } else {
-                icon.src = "/assets/images/read_checked.svg"
+                icon.src = "assets/images/read_checked.svg"
                 icon.title = "Read"
             }
         }
