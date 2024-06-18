@@ -47,19 +47,15 @@ function readStatusBehavior() {
 
         if(library[parentPlaceholder].readStatus == false) {
             icon.src = "assets/images/read_not_checked.svg";
-            icon.title = "Not read";
         } else {
             icon.src = "assets/images/read_checked.svg";
-            icon.title = "Read";
         };
 
         icon.onclick = () => {
             if(icon.src.includes("read_checked.svg")) {
                 icon.src = "assets/images/read_not_checked.svg";
-                icon.title = "Not read";
             } else {
                 icon.src = "assets/images/read_checked.svg";
-                icon.title = "Read";
             };
         };
     });
@@ -88,10 +84,9 @@ function addBookToLibrary() {
         
         if(document.querySelector("#read").checked) {
             bookReadStatus = true;
-        };
-        
+        }
 
-        let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus, randomColor())
+        let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus, randomColor());
         library.push(book);
 
         for(let i = 0; i < library.length; i++) {
@@ -99,7 +94,7 @@ function addBookToLibrary() {
                 addBookToPlaceholder(i);
                 readStatusBehavior();
                 removeBooksBehavior();
-            }
+            };
         };
     }
 };
@@ -152,8 +147,12 @@ function createElement(el, cl, text) {
 };
 
 function randomColor() {
-    const colorOptions = ['var(--red-strip)', 'var(--blue-strip)', 'var(--green-strip)', 'var(--purple-strip)']
-    return (colorOptions[(Math.floor(Math.random() * colorOptions.length))]);
+    const colorOptions = [
+        'var(--red-strip)',
+        'var(--blue-strip)',
+        'var(--green-strip)',
+        'var(--purple-strip)'];
+    return colorOptions[(Math.floor(Math.random() * colorOptions.length))];
 };
 
 function organizeBooks() {
@@ -169,6 +168,7 @@ function organizeBooks() {
         };
     });
 };
+
 
 
 // Particles.js library
