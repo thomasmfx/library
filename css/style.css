@@ -236,7 +236,7 @@ button#new-book:active {
     background-color: var(--black);
     color: white;
 
-    visibility: hidden;
+    /* visibility: hidden; */
     /* opacity: 0; */
 }
 
@@ -248,6 +248,10 @@ form > h1 {
 .form-row > input,
 .form-row > button {
     border-radius: 5px;
+}
+
+.form-row > input {
+    outline: none;
 }
 
 .form-row {
@@ -265,12 +269,18 @@ form > h1 {
     border: none;
     background-color: #bc4b51;
     cursor: pointer;
-
 }
 
 #reading-status {
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: start;
+    column-gap: .5em;
+}
+
+#read {
+    transform: scale(1.2);
+    margin-left: .1em;
 }
 
 .form-row#buttons {
@@ -290,10 +300,9 @@ form > h1 {
     opacity: 80%;
 }
 
-#book-name:not(#book-name:placeholder-shown) {
-    border-color: green;
-}
-
-#book-name:invalid {
-    border-color: red;
+.form-row > .error-message {
+    display: none;
+    margin-top: .2em;
+    font-size: .8rem;
+    color: #bc4b51;
 }
