@@ -5,8 +5,8 @@ const cancelBookSubmitBtn = document.querySelector("#cancel-book-submit");
 const booksPlaceholders = document.querySelectorAll(".book-placeholder");
 const library = [];
 class Book {
-    constructor(name, author, pages, readStatus, color) {
-        this.name = name,
+    constructor(title, author, pages, readStatus, color) {
+        this.title = title,
         this.author = author,
         this.pages = pages,
         this.readStatus = readStatus,
@@ -24,22 +24,22 @@ newBookBtn.addEventListener("click", () => {
 
 submitBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    let bookName = document.querySelector("#book-name");
+    let bookTitle = document.querySelector("#book-title");
     let bookAuthor = document.querySelector("#book-author");
     let bookPages = document.querySelector("#book-pages");
     
     if (
-        checkValidation(bookName)
+        checkValidation(bookTitle)
         && checkValidation(bookAuthor)
         && checkValidation(bookPages)
     ) {
         addBookToLibrary();
         bookForm.reset();
-        bookName.style.border = ''
+        bookTitle.style.border = ''
         bookAuthor.style.border = ''
         bookPages.style.border = ''
     } else {
-        checkValidation(bookName);
+        checkValidation(bookTitle);
         checkValidation(bookAuthor);
         checkValidation(bookPages);
     };
@@ -81,12 +81,12 @@ function showError(inputEl){
     };
 };
 
-let bookName = document.querySelector("#book-name");
+let bookTitle = document.querySelector("#book-title");
 let bookAuthor = document.querySelector("#book-author");
 let bookPages = document.querySelector("#book-pages");
 
-bookName.addEventListener('input', () => {
-    checkValidation(bookName);
+bookTitle.addEventListener('input', () => {
+    checkValidation(bookTitle);
 });
 bookAuthor.addEventListener('input', () => {
     checkValidation(bookAuthor);
@@ -132,7 +132,7 @@ function removeBooksBehavior() {
 
 function addBookToLibrary() {
     if(library.length < 12) {
-        let bookName = document.querySelector("#book-name").value;
+        let bookTitle = document.querySelector("#book-title").value;
         let bookAuthor = document.querySelector("#book-author").value;
         let bookPages = document.querySelector("#book-pages").value;
         let bookReadStatus = false;
@@ -141,7 +141,7 @@ function addBookToLibrary() {
             bookReadStatus = true;
         }
 
-        let book = new Book(bookName, bookAuthor, bookPages, bookReadStatus, randomColor());
+        let book = new Book(bookTitle, bookAuthor, bookPages, bookReadStatus, randomColor());
         library.push(book);
 
         for(let i = 0; i < library.length; i++) {
@@ -162,8 +162,8 @@ function addBookToPlaceholder(position) {
         ) {
             const book = createElement('div', 'book');
             const bookStripe = createElement('div', 'book-side-stripe');
-            const bookNameBg = createElement('div', 'book-title-bg');
-            const bookName = createElement('p', null, library[position].name);
+            const bookTitleBg = createElement('div', 'book-title-bg');
+            const bookTitle = createElement('p', null, library[position].title);
             const bookInfo = createElement('div', 'book-info');
             const bookAuthor = createElement('p', null, `by: ${library[position].author}`);
             const bookPages = createElement('p', null, `${library[position].pages} pp.`);
@@ -178,8 +178,8 @@ function addBookToPlaceholder(position) {
             bookInfo.appendChild(bookAuthor);
             bookInfo.appendChild(bookPages);
             book.appendChild(bookStripe);
-            book.appendChild(bookNameBg);
-            book.appendChild(bookName);
+            book.appendChild(bookTitleBg);
+            book.appendChild(bookTitle);
             book.appendChild(bookInfo);
             book.appendChild(bookIcons);
             placeholder.appendChild(book);
