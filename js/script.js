@@ -24,20 +24,75 @@ newBookBtn.addEventListener("click", () => {
 
 submitBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    let bookName = document.querySelector("#book-name").value;
-    let input = document.querySelector("#book-name");
-
-    if(bookName !== '') {
+    let bookName = document.querySelector("#book-name");
+    let bookAuthor = document.querySelector("#book-author");
+    let bookPages = document.querySelector("#book-pages");
+    
+    if (
+        checkValidation(bookName)
+        && checkValidation(bookAuthor)
+        && checkValidation(bookPages)
+    ) {
         addBookToLibrary();
-        input.setCustomValidity("");
         bookForm.reset();
+        bookName.style.border = ''
+        bookAuthor.style.border = ''
+        bookPages.style.border = ''
     } else {
-        input.setCustomValidity("Invalid field.");
+        checkValidation(bookName);
+        checkValidation(bookAuthor);
+        checkValidation(bookPages);
     };
 });
     
 cancelBookSubmitBtn.addEventListener("click", () => {
     bookForm.style.visibility = "hidden";
+});
+
+function checkValidation(inputEl){
+    if(inputEl.checkValidity()) {
+        validate(inputEl);
+        return true;
+    } else {
+        showError(inputEl);
+        return false;
+    };
+};
+
+function validate(input){
+    const errorMsgEl = input.parentElement.lastElementChild;
+    input.style.border = '2px solid green';
+    errorMsgEl.style.display = 'none';
+};
+
+function showError(inputEl){
+    let errorMsgEl = inputEl.parentElement.lastElementChild;
+    let inputName = inputEl.parentElement.firstElementChild.textContent;
+    errorMsgEl.lastElementChild.textContent = 
+    `${'Please provide'} ${inputName} `;
+    errorMsgEl.style.display = 'block';
+    inputEl.style.border = '2px solid #bc4b51';
+    
+    if(inputEl.validity.rangeOverflow){
+        errorMsgEl.lastElementChild.textContent = 
+        'The max nº of pages is 10000';
+        errorMsgEl.style.display = 'block';
+        inputEl.style.border = '2px solid #bc4b51';
+    };
+};
+
+let bookName = document.querySelector("#book-name");
+let bookAuthor = document.querySelector("#book-author");
+let bookPages = document.querySelector("#book-pages");
+
+bookName.addEventListener('input', () => {
+    checkValidation(bookName);
+});
+bookAuthor.addEventListener('input', () => {
+    checkValidation(bookAuthor);
+});
+bookPages.addEventListener('input', () => {
+    checkValidation(bookPages);
 });
 
 function readStatusBehavior() {
@@ -101,35 +156,33 @@ function addBookToLibrary() {
 
 function addBookToPlaceholder(position) {
     booksPlaceholders.forEach(placeholder => {
-        if(placeholder.dataset.index == position) {
-            if(!placeholder.hasChildNodes()) {
-                const book = createElement('div', 'book');
-                const bookStripe = createElement('div', 'book-side-stripe');
-                const bookNameBg = createElement('div', 'book-title-bg');
-                const bookName = createElement('p', null, library[position].name);
-                const bookInfo = createElement('div', 'book-info');
-                const bookAuthor = createElement('p', null, `by: ${library[position].author}`);
-                const bookPages = createElement('p', null, `${library[position].pages} pp.`);
-                const bookIcons = createElement('div', 'book-icons');
-                const readIcon = createElement('img', 'book-read-icon');
-                const removeBookIcon = createElement('img', 'remove-book-icon');
-                bookStripe.style.backgroundColor = library[position].color;
-                removeBookIcon.src = 'assets/images/remove.svg';
+        if(
+            placeholder.dataset.index == position
+            && !placeholder.hasChildNodes()
+        ) {
+            const book = createElement('div', 'book');
+            const bookStripe = createElement('div', 'book-side-stripe');
+            const bookNameBg = createElement('div', 'book-title-bg');
+            const bookName = createElement('p', null, library[position].name);
+            const bookInfo = createElement('div', 'book-info');
+            const bookAuthor = createElement('p', null, `by: ${library[position].author}`);
+            const bookPages = createElement('p', null, `${library[position].pages} pp.`);
+            const bookIcons = createElement('div', 'book-icons');
+            const readIcon = createElement('img', 'book-read-icon');
+            const removeBookIcon = createElement('img', 'remove-book-icon');
+            bookStripe.style.backgroundColor = library[position].color;
+            removeBookIcon.src = 'assets/images/remove.svg';
 
-                bookIcons.appendChild(readIcon);
-                bookIcons.appendChild(removeBookIcon);
-
-                bookInfo.appendChild(bookAuthor);
-                bookInfo.appendChild(bookPages);
-
-                book.appendChild(bookStripe);
-                book.appendChild(bookNameBg);
-                book.appendChild(bookName);
-                book.appendChild(bookInfo);
-                book.appendChild(bookIcons);
-
-                placeholder.appendChild(book);
-            };
+            bookIcons.appendChild(readIcon);
+            bookIcons.appendChild(removeBookIcon);
+            bookInfo.appendChild(bookAuthor);
+            bookInfo.appendChild(bookPages);
+            book.appendChild(bookStripe);
+            book.appendChild(bookNameBg);
+            book.appendChild(bookName);
+            book.appendChild(bookInfo);
+            book.appendChild(bookIcons);
+            placeholder.appendChild(book);
         };
     });
 };
@@ -168,67 +221,3 @@ function organizeBooks() {
         };
     });
 };
-
-
-
-// Particles.js library
-particlesJS('particles-js', {
-    "particles": {
-        "number": {
-            "value": 80,
-            "density": {
-                "enable": true,
-                "value_area": 800
-            }
-        },
-        "color": {
-            "value": "#49111c"
-        },
-        "shape": {
-            "type": "circle",
-            "stroke": {
-                "width": 0,
-                "color": "#000000"
-            }
-        },
-        "opacity": {
-            "value": 0.5,
-            "random": false
-        },
-        "size": {
-            "value": 3,
-            "random": true
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#49111c",
-            "opacity": 0.4,
-            "width": 1
-        },
-        "move": {
-            "enable": true,
-            "speed": 6,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false
-        }
-    },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "repulse"
-            },
-            "onclick": {
-                "enable": true,
-                "mode": "push"
-            },
-            "resize": true
-        }
-    },
-    "retina_detect": true
-});
